@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sorry Gift</title>
+<style>
+  body {
+    background-color: #ffe4e1; /* pastel pink */
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    text-align: center;
+    padding: 20px;
+  }
+  #slide {
+    max-width: 300px;
+    margin: 20px auto;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+  #text {
+    font-size: 18px;
+    margin: 15px 0;
+    color: #000;
+    min-height: 80px;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+  }
+  button {
+    display: none;
+    background-color: #ffb6c1;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px;
+    border-radius: 10px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+
+<img id="slide" src="a1.jpg" alt="DuduBubu">
+<div id="text"></div>
+
+<button id="yesBtn" onclick="showGift('yes')">YES</button>
+<button id="noBtn" onclick="showGift('no')">NO</button>
+
+<script>
+const sentences = [
+  "Puchu❤️!",
+  "I know I have been doing things I am not supposed to👀",
+  "Last night I should have sent soo many messages to you so you don't feel ignored when you wake up",
+  "But em sorry naaa...",
+  "You are my little kuchupuchu 💗✨",
+  "Don't be angry dudu 😘",
+  "Bubu loves you 💖",
+  "Bubu cares for you🎀",
+  "Dudu matters soo much to bubu🤍",
+  "I know you can't stay angry with me👀",
+  "Still the whole time you r upset ..is bothering me naa🥺",
+  "Showwwyyyyy🩷!"
+];
+
+const images = ["a1.jpg","a2.jpg","a3.jpg","a4.jpg"];
+
+let index = 0;
+
+function showSlide() {
+  if(index < sentences.length) {
+    document.getElementById("text").style.opacity = 0;
+    document.getElementById("slide").style.opacity = 0;
+
+    setTimeout(() => {
+      document.getElementById("text").innerHTML = sentences[index];
+      // rotate images for some slides
+      document.getElementById("slide").src = images[index % images.length];
+      document.getElementById("text").style.opacity = 1;
+      document.getElementById("slide").style.opacity = 1;
+      index++;
+      setTimeout(showSlide, 2000); // 2 seconds per sentence
+    }, 1000); // fade out duration
+  } else {
+    // Show buttons at end
+    document.getElementById("yesBtn").style.display = "inline-block";
+    document.getElementById("noBtn").style.display = "inline-block";
+  }
+}
+
+function showGift(answer) {
+  if(answer === 'yes') {
+    document.getElementById('slide').src = 'a4.jpg';
+    document.getElementById('text').innerHTML = "Here we go…<br>me holding my world in my arms,<br>My Sam ❤️";
+  } else {
+    document.getElementById('slide').src = 'a2.jpg';
+    document.getElementById('text').innerHTML = "How dare you 😤<br>Sam, go back and press YES 💖";
+  }
+}
+
+window.onload = showSlide;
+</script>
+
+</body>
+</html>
